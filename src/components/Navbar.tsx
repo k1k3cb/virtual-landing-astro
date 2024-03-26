@@ -6,7 +6,7 @@ const Navbar = () => {
 
   const toggleNavbar = () => {
     setMobileDrawerOpen(prevState => !prevState);
-    console.log('setMobileDrawerOpen', mobileDrawerOpen);
+    
   };
 
   return (
