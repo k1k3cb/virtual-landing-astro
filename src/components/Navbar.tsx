@@ -12,7 +12,17 @@ const Navbar = () => {
     <header className='sticky top-0 z-50 w-full py-3 backdrop-blur-lg border-b border-neutral-700/80'>
       <div className='container px-4 mx-auto relative lg:text-sm'>
         <div className='flex justify-between items-center'>
-          <div className='flex items-center flex-shrink-0'>
+          <div
+            className='flex items-center flex-shrink-0 cursor-pointer'
+            onClick={() => {
+              // Basic jumping to the top of the page
+              // Jumping to the top of the page with smooth scrolling
+              window.scroll({
+                top: 0,
+                behavior: 'smooth'
+              });
+            }}
+          >
             <img
               className='h-10 w-10 mr-2'
               src='src/assets/logo.png'
@@ -21,7 +31,18 @@ const Navbar = () => {
             <span className='text-xl tracking-tight'>VirtualR</span>
           </div>
           <nav>
-            <ul className='hidden lg:flex ml-14 space-x-12'>
+            <ul
+              className='hidden lg:flex ml-14 space-x-12 '
+              onClick={(event: React.SyntheticEvent) => {
+                event.preventDefault();
+                const target = event.target as HTMLAnchorElement;
+                const id = target.getAttribute('href')?.replace('#', '');
+                const element = document.getElementById(String(id));
+                element?.scrollIntoView({
+                  behavior: 'smooth'
+                });
+              }}
+            >
               {navItems.map(item => (
                 <li key={item.id}>
                   <a href={item.href}>{item.label}</a>
